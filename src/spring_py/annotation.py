@@ -11,6 +11,11 @@ def Service(cls: type) -> type:
     cls.__component__ = True
     return cls
 
+def RestController(cls: type) -> type:
+    """REST控制器注解装饰器"""
+    cls.__component__ = True
+    return cls
+
 def Configuration(cls: type) -> type:
     """配置类注解装饰器"""
     cls.__configuration__ = True

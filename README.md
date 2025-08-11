@@ -454,6 +454,8 @@ uv build
 - ✅ CLI项目生成工具
 - ✅ FastAPI集成支持
 
+### v0.1.3
+- ✅ 修复部分因名称导致的问题
 ## 社区
 
 - **GitHub**: https://github.com/spring-py/spring-py

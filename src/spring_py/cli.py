@@ -92,12 +92,12 @@ class SpringPyCLI:
         """生成 pyproject.toml"""
         content = f'''[project]
 name = "{project_name}"
-version = "0.1.0"
+version = "0.1.2"
 description = "A Spring-Py based web application"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "spring-py>=0.1.0",
+    "spring-py-core>=0.1.1/",
     "fastapi>=0.104.0",
     "uvicorn>=0.24.0",
 ]
@@ -147,22 +147,25 @@ select = ["E", "F", "I", "N", "W"]
         content = f'''"""
 {project_name.title().replace("-", " ")} - Spring-Py Web应用程序
 """
-from spring_py import SpringBootApplication, Component, Autowired, get_bean
+"""
+Myapp - Spring-Py Web应用程序
+"""
+from spring_py import SpringBootApplication, Component, Autowired, get_bean, RestController, Service
 from fastapi import FastAPI, APIRouter
 from fastapi.responses import JSONResponse
 import uvicorn
 import os
 
 
-@Component
+@Service
 class UserService:
     """用户服务示例"""
     
     def __init__(self):
-        self.users = {{
-            1: {{"id": 1, "name": "Alice", "email": "alice@example.com"}},
-            2: {{"id": 2, "name": "Bob", "email": "bob@example.com"}},
-        }}
+        self.users = {
+            1: {"id": 1, "name": "Alice", "email": "alice@example.com"},
+            2: {"id": 2, "name": "Bob", "email": "bob@example.com"},
+        }
         print("📋 UserService 初始化完成")
     
     def get_user(self, user_id: int):
@@ -176,26 +179,26 @@ class UserService:
     def create_user(self, name: str, email: str):
         """创建新用户"""
         user_id = max(self.users.keys()) + 1 if self.users else 1
-        user = {{"id": user_id, "name": name, "email": email}}
+        user = {"id": user_id, "name": name, "email": email}
         self.users[user_id] = user
         return user
 
 
-@Component
+@Service
 class HealthService:
     """健康检查服务"""
     
     def get_health_status(self):
         """获取应用健康状态"""
-        return {{
+        return {
             "status": "healthy",
-            "service": "{project_name}",
+            "service": "myapp",
             "version": "0.1.0",
             "framework": "Spring-Py + FastAPI"
-        }}
+        }
 
 
-@Component
+@RestController
 class UserController:
     """用户控制器"""
     
@@ -209,9 +212,9 @@ class UserController:
         async def get_users():
             """获取所有用户"""
             users = self.user_service.get_all_users()
-            return {{"users": users, "total": len(users)}}
+            return {"users": users, "total": len(users)}
         
-        @router.get("/{{user_id}}")
+        @router.get("/{user_id}")
         async def get_user(user_id: int):
             """根据ID获取用户"""
             user = self.user_service.get_user(user_id)
@@ -219,7 +222,7 @@ class UserController:
                 return user
             return JSONResponse(
                 status_code=404,
-                content={{"error": "User not found"}}
+                content={"error": "User not found"}
             )
         
         @router.post("/")
@@ -234,7 +237,7 @@ class UserController:
         return router
 
 
-@Component
+@RestController
 class HealthController:
     """健康检查控制器"""
     
@@ -252,13 +255,13 @@ class HealthController:
         @router.get("/")
         async def root():
             """根路径"""
-            return {{
-                "message": "Welcome to {project_name.title().replace('-', ' ')} API",
+            return {
+                "message": "Welcome to Myapp API",
                 "version": "0.1.0",
                 "framework": "Spring-Py + FastAPI",
                 "docs": "/docs",
                 "health": "/health"
-            }}
+            }
         
         return router
 
@@ -270,7 +273,7 @@ class Application:
     def create_app(self) -> FastAPI:
         """创建FastAPI应用实例"""
         app = FastAPI(
-            title="{project_name.title().replace('-', ' ')} API",
+            title="Myapp API",
             description="A Spring-Py based web application",
             version="0.1.0",
             docs_url="/docs",
@@ -289,7 +292,7 @@ class Application:
 
 def main():
     """应用程序主入口"""
-    print("🚀 启动 {project_name.title().replace('-', ' ')} 应用...")
+    print("🚀 启动 Myapp 应用...")
     
     # 启动Spring-Py应用上下文
     app = Application()
