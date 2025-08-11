@@ -18,6 +18,9 @@
 pip install spring-py-core
 ```
 
+## 项目地址
+https://github.com/mahoushoujyo-eee/spring-py
+
 ## 快速开始
 
 ### 1. 基本组件定义
