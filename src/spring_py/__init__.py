@@ -2,7 +2,7 @@
 Spring-Py: A Python implementation of Spring Framework IoC container
 """
 
-from .annotation import Component, Configuration, Bean, Autowired, Service
+from .annotation import Component, Configuration, Bean, Autowired, Service, RestController
 from .scanner import ComponentScanner, scan_components
 from .container import Container, BeanInfo
 from .context import ApplicationContext
@@ -14,9 +14,9 @@ from .global_context import (
 )
 from .application import SpringApplication, SpringBootApplication
 
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 __all__ = [
-    "Component", "Configuration", "Bean", "Autowired", "Service",
+    "Component", "Configuration", "Bean", "Autowired", "Service", "RestController"
     "ComponentScanner", "scan_components",
     "Container", "BeanInfo",
     "ApplicationContext",
