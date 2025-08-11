@@ -1,5 +1,5 @@
 [project]
-name = "spring-py"
+name = "spring-py-core"
 version = "0.1.0"
 description = "A Python implementation of Spring Framework IoC container"
 readme = "README.md"

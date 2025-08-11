@@ -15,7 +15,7 @@
 ## 安装
 
 ```bash
-pip install spring-py
+pip install spring-py-core
 ```
 
 ## 快速开始
