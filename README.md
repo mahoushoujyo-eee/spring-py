@@ -456,6 +456,10 @@ uv build
 
 ### v0.1.3
 - ✅ 修复部分因名称导致的问题
+
+### v0.1.4
+- ✅ 完善启动模板，增强与fastapi的整合
+
 ## 社区
 
 - **GitHub**: https://github.com/spring-py/spring-py

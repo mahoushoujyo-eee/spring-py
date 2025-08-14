@@ -10,7 +10,8 @@ from .global_context import (
     initialize_context, 
     get_context, 
     get_bean, 
-    is_context_initialized
+    is_context_initialized,
+    get_all_controllers,
 )
 from .application import SpringApplication, SpringBootApplication
 
@@ -20,6 +21,6 @@ __all__ = [
     "ComponentScanner", "scan_components",
     "Container", "BeanInfo",
     "ApplicationContext",
-    "initialize_context", "get_context", "get_bean", "is_context_initialized",
+    "initialize_context", "get_context", "get_bean", "is_context_initialized", "get_all_controllers",
     "SpringApplication", "SpringBootApplication"
 ]

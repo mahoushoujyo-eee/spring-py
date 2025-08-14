@@ -9,11 +9,13 @@ def Component(cls: type) -> type:
 def Service(cls: type) -> type:
     """服务类注解装饰器"""
     cls.__component__ = True
+    cls.__service__ = True
     return cls
 
 def RestController(cls: type) -> type:
     """REST控制器注解装饰器"""
     cls.__component__ = True
+    cls.__controller__ = True
     return cls
 
 def Configuration(cls: type) -> type:

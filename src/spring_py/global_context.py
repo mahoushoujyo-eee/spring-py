@@ -56,6 +56,14 @@ class GlobalContextManager:
         
         return result
     
+    def get_controllers(self):
+        """获取所有控制器"""
+        controllers = []
+        for component in self._context.list_components():
+            if hasattr(component, '__controller__'):
+                controllers.append(get_bean(component))
+        return controllers
+    
     def is_initialized(self) -> bool:
         """检查是否已初始化"""
         return self._context is not None
@@ -80,3 +88,7 @@ def get_bean(cls_or_name) -> Any:
 def is_context_initialized() -> bool:
     """检查全局上下文是否已初始化"""
     return _global_manager.is_initialized()
+
+def get_all_controllers() -> List[Type]:
+    """获取所有控制器"""
+    return _global_manager.get_controllers()
